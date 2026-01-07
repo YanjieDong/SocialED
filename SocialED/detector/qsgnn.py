@@ -1141,7 +1141,7 @@ def extract_embeddings(g, model, num_all_samples, args):
         sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
         batch_size = min(args.batch_size, num_all_samples)  # 使用较小的批量大小
 
-        dataloader = dgl.dataloading.NodeDataLoader(
+        dataloader = dgl.dataloading.DataLoader(
             g, block_sampler=sampler,
             batch_size=batch_size,
             nids=indices,
@@ -1225,13 +1225,13 @@ def initial_train(i, args, data_split, metrics, embedding_save_path, loss_fn, mo
         print(f"Epoch {epoch + 1}/{args.n_epochs} - Features and labels extracted.")
 
         sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
-        # dataloader = dgl.dataloading.NodeDataLoader(
+        # dataloader = dgl.dataloading.DataLoader(
         #     g, train_indices, sampler,
         #     batch_size=args.batch_size,
         #     shuffle=True,
         #     drop_last=False,
         #     )
-        dataloader = dgl.dataloading.NodeDataLoader(
+        dataloader = dgl.dataloading.DataLoader(
             g, block_sampler=sampler,
             batch_size=args.batch_size,
             nids=train_indices,
@@ -1416,13 +1416,13 @@ def continue_train(i, data_split, metrics, embedding_save_path, loss_fn, model, 
                     metric.reset()
 
                 sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
-                # dataloader = dgl.dataloading.NodeDataLoader(
+                # dataloader = dgl.dataloading.DataLoader(
                 #     g, test_indices, sampler,
                 #     batch_size=args.batch_size,
                 #     shuffle=True,
                 #     drop_last=False,
                 #     )
-                dataloader = dgl.dataloading.NodeDataLoader(
+                dataloader = dgl.dataloading.DataLoader(
                     g, block_sampler=sampler,
                     batch_size=args.batch_size,
                     nids=test_indices,

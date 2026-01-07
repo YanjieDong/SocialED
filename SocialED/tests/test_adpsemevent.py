@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 import torch
-from ..detector.ADPSEMEvent import ADPSEMEvent, Preprocessor
+from ..detector.adpsemevent import ADPSEMEvent, Preprocessor
 from unittest.mock import MagicMock, patch
 
 class TestADPSEMEvent(unittest.TestCase):

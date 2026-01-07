@@ -402,7 +402,7 @@ def extract_results(g_dict, views, labels, model, args, train_indices=None):
             all_indices = all_indices.cuda()
         print(all_indices)
         sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
-        dataloader = dgl.dataloading.NodeDataLoader(
+        dataloader = dgl.dataloading.DataLoader(
             g_dict[views[0]], all_indices, sampler,
             batch_size=args.batch_size,
             shuffle=False,
@@ -415,7 +415,7 @@ def extract_results(g_dict, views, labels, model, args, train_indices=None):
             blocks_dict = {}
             blocks_dict[views[0]] = blocks
             for v in views[1:]:
-                blocks_v = list(dgl.dataloading.NodeDataLoader(
+                blocks_v = list(dgl.dataloading.DataLoader(
                     g_dict[v], extract_indices, sampler,
                     batch_size=args.batch_size,
                     shuffle=False,
@@ -530,7 +530,7 @@ def train_model(model, g_dict, views, features, times, labels, epoch, criterion,
             losses = []
             total_loss = 0
             sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
-            dataloader = dgl.dataloading.NodeDataLoader(
+            dataloader = dgl.dataloading.DataLoader(
                 g_dict[views[0]], train_indices, sampler,
                 batch_size=args.batch_size,
                 shuffle=False,
@@ -547,7 +547,7 @@ def train_model(model, g_dict, views, features, times, labels, epoch, criterion,
                 blocks_dict = {}
                 blocks_dict[views[0]] = blocks
                 for v in views[1:]:
-                    blocks_v = list(dgl.dataloading.NodeDataLoader(
+                    blocks_v = list(dgl.dataloading.DataLoader(
                         g_dict[v], batch_indices, sampler,
                         batch_size=args.batch_size,
                         shuffle=False,

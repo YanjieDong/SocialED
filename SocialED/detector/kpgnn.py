@@ -21,7 +21,7 @@ import pandas as pd
 import spacy
 from datetime import datetime
 import networkx as nx
-from dgl.dataloading import MultiLayerNeighborSampler, NodeDataLoader
+from dgl.dataloading import MultiLayerNeighborSampler, DataLoader
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from dataset.dataloader import DatasetLoader
@@ -945,7 +945,7 @@ class KPGNN_model():
         mins_infer_epochs = []
 
         sampler = MultiLayerNeighborSampler([self.args.n_neighbors] * 2)
-        dataloader = NodeDataLoader(
+        dataloader = DataLoader(
             g, train_indices, sampler,
             batch_size=self.args.batch_size,
             shuffle=True,
@@ -1201,7 +1201,7 @@ class KPGNN_model():
         sampler = MultiLayerNeighborSampler([self.args.n_neighbors] * 2)  # self.args.n_hops 应该是 2
 
         # 创建 DataLoader
-        dataloader = NodeDataLoader(
+        dataloader = DataLoader(
             g, train_indices, sampler,
             batch_size=self.args.batch_size,
             shuffle=True,
@@ -1425,7 +1425,7 @@ def generateMasks(length, data_split, train_i, i, validation_percent=0.2, save_p
 def extract_embeddings(g, model, num_all_samples, labels):
 
     sampler = MultiLayerNeighborSampler([1000, 1000])
-    dataloader = NodeDataLoader(
+    dataloader = DataLoader(
         g, torch.arange(g.num_nodes()), sampler,
         batch_size=num_all_samples,
         shuffle=False,

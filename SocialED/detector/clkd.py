@@ -1102,7 +1102,7 @@ def mutual_train(embedding_save_path1, embedding_save_path2, data_split1, data_s
                 metric.reset()
 
             sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
-            dataloader = dgl.dataloading.NodeDataLoader(
+            dataloader = dgl.dataloading.DataLoader(
                 model_data['g'], model_data['train_indices'], sampler,
                 batch_size=args.batch_size,
                 shuffle=True,
@@ -1277,7 +1277,7 @@ def initial_maintain(train_i, i, data_split, metrics, embedding_save_path, loss_
             metric.reset()
 
         sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
-        dataloader = dgl.dataloading.NodeDataLoader(
+        dataloader = dgl.dataloading.DataLoader(
             g, train_indices, sampler,
             batch_size=args.batch_size,
             shuffle=True,
@@ -1486,7 +1486,7 @@ def extract_embeddings(g, model, num_all_samples, labels, args, device):
         model.eval()
         select_indices = torch.LongTensor(range(0, num_all_samples)).to(device)
         sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
-        dataloader = dgl.dataloading.NodeDataLoader(
+        dataloader = dgl.dataloading.DataLoader(
             g, select_indices, sampler,
             batch_size=int(args.batch_size),
             shuffle=False,
@@ -1518,7 +1518,7 @@ def mutual_extract_embeddings(g, model, peer, src, tgt, num_all_samples, labels,
         peer.eval()
         select_indices = torch.LongTensor(range(0, num_all_samples)).to(device)
         sampler = dgl.dataloading.MultiLayerFullNeighborSampler(2)
-        dataloader = dgl.dataloading.NodeDataLoader(
+        dataloader = dgl.dataloading.DataLoader(
             g, select_indices, sampler,
             batch_size=int(args.batch_size),
             shuffle=False,

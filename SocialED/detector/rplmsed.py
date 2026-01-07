@@ -2,7 +2,7 @@
 # encoding: utf-8
 import gc
 import torch.optim as optim
-from ignite.contrib.handlers import ProgressBar
+from ignite.handlers.tqdm_logger import ProgressBar
 from ignite.engine import Engine, Events
 from ignite.handlers import EarlyStopping, ModelCheckpoint
 from ignite.metrics import RunningAverage, Average

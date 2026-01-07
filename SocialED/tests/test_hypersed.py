@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 import torch
-from ..detector.Hypersed import Hypersed, Preprocessor, SE
+from ..detector.hypersed import HyperSED, Preprocessor, SE
 from unittest.mock import MagicMock, patch
 
 class TestHypersed(unittest.TestCase):
@@ -14,7 +14,7 @@ class TestHypersed(unittest.TestCase):
         self.mock_dataset.get_dataset_name.return_value = "test_dataset"
         
         # Initialize model
-        self.model = Hypersed(self.mock_dataset)
+        self.model = HyperSED(self.mock_dataset)
         
         # Create sample data
         self.sample_data = pd.DataFrame({

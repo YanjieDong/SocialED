@@ -1,0 +1,51 @@
+[project]
+name = "SocialED"
+version = "1.1.7"
+requires-python =">=3.12,<3.13"
+dependencies = [
+    "torch==2.4.1",
+    "torchaudio==2.4.1",
+    "torchvision==0.19.1",
+    "torch-scatter>=2.1.2,<3.0",
+    "dgl==2.5.0",
+    "numpy",
+    "pandas",
+    "munkres",
+    "pytorch-ignite",
+    "matplotlib",
+    "spacy",
+    "sentence_transformers>=5.0.0",
+    "GitPython",
+    "pytest",
+    "gensim",
+    "huggingface-hub",
+    "hdbscan",
+    "torch-geometric",
+    "geoopt>=0.5.1",
+]
+
+[tool.uv]
+# Define the specialized indices
+index-url = "https://pypi.org/simple"
+
+# 1. Global find-links (for flat HTML repos like DGL and PyG)
+find-links = [
+    "https://data.dgl.ai/wheels/torch-2.4/repo.html",
+    "https://data.pyg.org/whl/torch-2.4.1+cpu.html"
+]
+
+# 2. Define the explicit Torch index
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+# 3. Map Torch to the index (DGL & Scatter are found via find-links automatically)
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+torchaudio = { index = "pytorch-cpu" }
+
+[tool.uv.extra-build-dependencies]
+torch-scatter = ["torch"]
+spacepy = ["numpy"]
