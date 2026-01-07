@@ -3,9 +3,9 @@ name = "SocialED"
 version = "1.1.7"
 requires-python =">=3.12,<3.13"
 dependencies = [
-    "torch==2.4.1",
-    "torchaudio==2.4.1",
-    "torchvision==0.19.1",
+    "torch==2.6.0",
+    "torchaudio==2.6.0",
+    "torchvision==0.21.0",
     "torch-scatter>=2.1.2,<3.0",
     "dgl==2.5.0",
     "numpy",
@@ -30,8 +30,8 @@ index-url = "https://pypi.org/simple"
 
 # 1. Global find-links (for flat HTML repos like DGL and PyG)
 find-links = [
-    "https://data.dgl.ai/wheels/torch-2.4/repo.html",
-    "https://data.pyg.org/whl/torch-2.4.1+cpu.html"
+    "https://data.dgl.ai/wheels/torch-2.6/repo.html",
+    "https://data.pyg.org/whl/torch-2.6.0+cpu.html"
 ]
 
 # 2. Define the explicit Torch index
